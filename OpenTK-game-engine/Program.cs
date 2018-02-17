@@ -1,17 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+﻿using Engine.Core;
 namespace Engine
 {
     class Program
     {
         static void Main(string[] args)
         {
-            Core.Display.Init(1920, 1080, "Display");
-            Core.Display.Start();
+            Display.Init(1920, 1080, "Display");
+            Display.Start();
         }
     }
 }

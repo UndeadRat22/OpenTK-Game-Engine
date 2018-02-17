@@ -6,7 +6,7 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{85D898A2-46F9-4377-B89F-1F4F139CB0D5}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <RootNamespace>Engine</RootNamespace>
+    <RootNamespace>Core</RootNamespace>
     <AssemblyName>OpenTK-game-engine</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
@@ -51,6 +51,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Core\Display.cs" />
+    <Compile Include="Core\Engine.cs" />
+    <Compile Include="Core\Input.cs" />
+    <Compile Include="Core\Time.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -59,5 +62,6 @@
     <None Include="OpenTK.dll.config" />
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -1,12 +1,9 @@
-﻿using Engine.Core;
-namespace Engine
+﻿using Core;
+
+class Program
 {
-    class Program
+    static void Main(string[] args)
     {
-        static void Main(string[] args)
-        {
-            Display.Init(1920, 1080, "Display");
-            Display.Start();
-        }
+        Engine.Init();
     }
 }

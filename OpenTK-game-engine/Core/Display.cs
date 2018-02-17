@@ -2,7 +2,7 @@
 using OpenTK.Graphics;
 using OpenTK.Graphics.OpenGL;
 
-namespace Engine.Core
+namespace Core
 {
     static class Display
     {
@@ -20,34 +20,42 @@ namespace Engine.Core
             window = new GameWindow(width, height, GraphicsMode.Default, title, 
                 GameWindowFlags.Default, DisplayDevice.Default, 
                 3, 2, GraphicsContextFlags.ForwardCompatible);
-
+            if (window == null)
+            {
+                System.Console.WriteLine("Failed to Initialize the Display!");
+                System.Environment.Exit(-1);
+            }
             window.Width = width;
             window.Height = height;
             Center();
                 
             window.TargetRenderFrequency = max_fps;
-            if (window == null)
-                initialized = false;
+
             initialized = true;
+            Start();
         }
 
         /// <summary>
         /// Set up the neccesary things AFTER the window has been opened
         /// </summary>
-        public static void Start()
+        private static void Start()
         {
             if (!initialized)
                 return;
         
-            window.Load += OnLoad;
             window.Closing += OnDisplayClose;
-            window.FocusedChanged += OnFocusChange;
-            window.Resize += OnResize;
-            window.UpdateFrame += OnUpadteFrame;
-            window.RenderFrame += OnRenderFrame;
+            window.FocusedChanged += FocusChanged;
+            window.Resize += Resize;
+            window.UpdateFrame += Engine.Update;
+            window.RenderFrame += PreRender;
+            window.RenderFrame += Render;
+            Engine.Start();
             window.Run();
         }
 
+        /// <summary>
+        /// Centers the main window on the main monitor
+        /// </summary>
         private static void Center()
         {
             DisplayDevice display = DisplayDevice.Default;
@@ -57,28 +65,31 @@ namespace Engine.Core
         }
 
         #region event_handlers
-        private static void OnLoad(object sender, System.EventArgs e)
-        {
-        }
 
         private static void OnDisplayClose(object sender, System.ComponentModel.CancelEventArgs e)
         {
-        }
-        private static void OnFocusChange(object sender, System.EventArgs e)
-        {
-        }
-
-        private static void OnResize(object sender, System.EventArgs e)
-        {
+            System.Console.WriteLine("{0}, {1} Close", sender, e);
+            Engine.Dispose();
         }
 
-        private static void OnUpadteFrame(object sender, FrameEventArgs e)
+        private static void FocusChanged(object sender, System.EventArgs e)
         {
+            System.Console.WriteLine("{0}, {1} Focus", sender, e);
         }
-        private static void OnRenderFrame(object sender, FrameEventArgs e)
+
+        private static void Resize(object sender, System.EventArgs e)
+        {
+            System.Console.WriteLine("{0}, {1} Resize", sender, e);
+        }
+
+        private static void PreRender(object sender, FrameEventArgs e)
         {
             GL.Clear(ClearBufferMask.ColorBufferBit | ClearBufferMask.DepthBufferBit);
             GL.ClearColor(Color4.Aqua);
+        }
+
+        private static void Render(object sender, FrameEventArgs e)
+        {
             window.SwapBuffers();
         }
         #endregion

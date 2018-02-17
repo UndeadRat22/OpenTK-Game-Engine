@@ -4,13 +4,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace OpenTK_game_engine
+namespace Engine
 {
     class Program
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            Core.Display.Init(1920, 1080, "Display");
+            Core.Display.Start();
         }
     }
 }

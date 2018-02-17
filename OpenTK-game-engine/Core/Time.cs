@@ -11,9 +11,9 @@ namespace Core
         private static double deltaTime = 0;
         private static long elapsedTime = 0;
 
-        public static float DeltaTime => (float)deltaTime;
+        public static double DeltaTime => deltaTime;
 
-        public static float ElapsedTime => elapsedTime;
+        public static long ElapsedTime => elapsedTime;
 
         public static void Start()
         {
@@ -26,7 +26,8 @@ namespace Core
         {
             elapsedTime = stopwatch.ElapsedMilliseconds;
             deltaTimeMilliseconds = elapsedTime - prev_elapsedMilliseconds;
-            deltaTime = deltaTimeMilliseconds / 1000;
+            deltaTime = deltaTimeMilliseconds;
+            deltaTime /= 1000;
             prev_elapsedMilliseconds = elapsedTime;
         }
     }

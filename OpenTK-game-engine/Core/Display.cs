@@ -30,6 +30,7 @@ namespace Core
             Center();
                 
             window.TargetRenderFrequency = max_fps;
+            window.TargetUpdateFrequency = max_fps;
 
             initialized = true;
             Start();
@@ -50,6 +51,9 @@ namespace Core
             window.RenderFrame += PreRender;
             window.RenderFrame += Render;
             Engine.Start();
+
+            GL.ClearColor(Color4.Aqua);
+
             window.Run();
         }
 
@@ -85,7 +89,6 @@ namespace Core
         private static void PreRender(object sender, FrameEventArgs e)
         {
             GL.Clear(ClearBufferMask.ColorBufferBit | ClearBufferMask.DepthBufferBit);
-            GL.ClearColor(Color4.Aqua);
         }
 
         private static void Render(object sender, FrameEventArgs e)

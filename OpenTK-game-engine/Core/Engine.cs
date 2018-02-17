@@ -24,7 +24,7 @@ namespace Core
         public static void Update(object sender, FrameEventArgs args)
         {
             Time.UpdateTime();
-            System.Console.WriteLine("Delta time :{0}.", Time.DeltaTime);
+            System.Console.WriteLine("Elapsed Time: {0}, Delta time :{1:0.00}.", Time.ElapsedTime, Time.DeltaTime.ToString());
         }
 
         /// <summary>

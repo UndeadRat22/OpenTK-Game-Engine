@@ -10,6 +10,9 @@ namespace Core
         private static bool initialized = false;
 
         public static bool Initialized => initialized;
+
+        public static GameWindow Window => window;
+
         /// <summary>
         /// Creates A GameWindow given the parameters
         /// </summary>
@@ -47,9 +50,9 @@ namespace Core
             window.Closing += OnDisplayClose;
             window.FocusedChanged += FocusChanged;
             window.Resize += Resize;
-            window.UpdateFrame += Engine.Update;
             window.RenderFrame += PreRender;
             window.RenderFrame += Render;
+
             Engine.Start();
 
             GL.ClearColor(Color4.Aqua);

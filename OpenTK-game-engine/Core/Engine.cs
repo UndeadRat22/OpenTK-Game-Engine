@@ -16,15 +16,19 @@ namespace Core
         public static void Start()
         {
             Time.Start();
+            Input.Start();
+            Display.Window.UpdateFrame += Update;
         }
 
         /// <summary>
         /// One Frame worth of updates
         /// </summary>
-        public static void Update(object sender, FrameEventArgs args)
+        private static void Update(object sender, FrameEventArgs args)
         {
             Time.UpdateTime();
-            System.Console.WriteLine("Elapsed Time: {0}, Delta time :{1:0.00}.", Time.ElapsedTime, Time.DeltaTime.ToString());
+            Input.UpdateInput();
+            System.Console.WriteLine(Input.GetKeyDown('a'));
+            //System.Console.WriteLine("Elapsed Time: {0}, Delta time :{1:0.00}.", Time.ElapsedTime, Time.DeltaTime.ToString());
         }
 
         /// <summary>
